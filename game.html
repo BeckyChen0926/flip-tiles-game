@@ -1,0 +1,103 @@
+<!-- Author: Becky Chen (bc103)-->
+
+<!doctype html>
+<!-- 
+     Game of Concentration for CS110 assignment
+     Originally written by CS110 staff, Fall 2012
+     Re-written for CS204 by Scott, Fall 2016
+     Update with non-numeric IDs, Spring 2020
+-->
+     
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Game of Concentration</title>
+   <style>
+     body { font: 16px verdana; }
+     /* the board does weird resizing during clicks if the width is a percentage,
+	so I'm setting the width to a pixel value, but limited by page width.
+    */
+     #board {
+	 display: inline-block;
+	 width: 616px;
+	 max-width: 90%;
+	 border: 2px solid black;
+	 background-color: gray;
+	 margin: 10px;
+	 padding: 10px;
+     }
+
+     /* 25% gives us rows of four images. use border-box so that padding and
+	border are included in the 25% width. 4*(150+4)=616px */
+     #board img {
+	 box-sizing: border-box;
+	 width: 25%;
+	 padding: 2px;
+     }
+
+     #controls {
+	 display: inline-block;
+	 width: 300px;
+	 vertical-align: top;
+     }
+
+     /* make the messages stand out */
+     #msg {color: red}
+
+     button {
+	 font: 20px verdana;
+	 padding: 0.5ex 1em;
+	 border: 1px solid black;
+	 border-radius: 0.5ex;
+     }
+   </style>
+</head>
+
+<body>
+   <h1>The Game of Concentration</h1>
+
+   <div id="board">
+        <img src="blank.jpg" id="cell1" alt="image1">
+        <img src="blank.jpg" id="cell2" alt="image2">
+        <img src="blank.jpg" id="cell3" alt="image3">
+        <img src="blank.jpg" id="cell4" alt="image4">
+        <img src="blank.jpg" id="cell5" alt="image5">
+        <img src="blank.jpg" id="cell6" alt="image6">
+        <img src="blank.jpg" id="cell7" alt="image7">
+        <img src="blank.jpg" id="cell8" alt="image8">
+        <img src="blank.jpg" id="cell9" alt="image9">
+        <img src="blank.jpg" id="cell10" alt="image10">
+        <img src="blank.jpg" id="cell11" alt="image11">
+        <img src="blank.jpg" id="cell12" alt="image12">
+        <img src="blank.jpg" id="cell13" alt="image13">
+        <img src="blank.jpg" id="cell14" alt="image14">
+        <img src="blank.jpg" id="cell15" alt="image15">
+        <img src="blank.jpg" id="cell16" alt="image16">
+   </div>
+
+   <div id="controls">
+     <button id="startNewGameButton">Start New Game</button>
+
+     <!-- display the number of tries and matches as the game progresses -->
+     <h2>Status</h2>
+     <p>Tries: <output id="tries">0</output> Matches: <output id="matches">0</output></p>
+     <output id="msg"></output>
+   </div>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cs.wellesley.edu/~anderson/js/bounds/bounds-plugin.js"></script>
+   <script src="https://cs.wellesley.edu/~cs204/assignments/concentration/supplied.js"></script>
+   <script>
+     // The following code removes all the nice IMG elements and replaces them with the same ones.
+     // The replacement lacks the spaces and carriage return elements, which means that each IMG
+     // can be made exactly 25% of the container.
+     function nospace(selector) {
+	 var html="";
+	 $(selector).children().each(function (i,elt) { html += elt.outerHTML; });
+	 $(selector).html(html);
+     }
+     nospace('#board');
+   </script>
+   <script src="solution.js"></script>
+</body>
+</html>
